@@ -49,7 +49,14 @@
 
               <q-separator/>
 
-              <text align="left" class="q-ml-xl q-mt-lg q-mr-xl text-body1 row"> Туристическое Агенство САТУ-ТУР... Уважаемые туристы, вашему вниманию предлагается экскурсионное обслуживание во время круиза по Юго-Восточной Азии. С ноября по март каждого года из ряда круизных терминалов Азии отправляются шикарные белоснежные теплоходы по самым разнообразным маршрутам. Одной из самых популярных отправных точек для круизов является город-государство Сингапур. Именно там находится крупнейший круизный терминал Юго-Восточной Азии. В Сингапур хоть и нужна виза для граждан большинства стран бывшего советского союза, но она оформляется в электронном виде без особых сложностей. Поэтому круизы из Сингапура пользуются очень большой популярностью у русскоязычных туристов.</text>
+              <div class="text-center col-12 q-ma-md">
+                <text class="row justify-center text-subtitle1">Туристическое Агенство Сату-Тур</text>
+
+                <text class="row justify-center text-subtitle1">Русско-говорящие гиды с широким опытом проведут Ваш персональный VIP тур.</text>
+
+                <text class="row justify-center text-subtitle1">Для Ваших детей тур Бесплатен. (До 10 лет)</text>
+              </div>
+
             </div>
           
           </q-card-section>
@@ -69,7 +76,14 @@
         <div class="q-ma-md q-mt-xl col-12" >
           <text align="left" class="q-pa-md text-h5 col-12 row" >О Нас</text>
 
-          <text align="left" class="q-ml-md q-mt-md q-mr-md q-mb-xl text-body2 col-6 row"> Туристическое Агенство САТУ-ТУР... Уважаемые туристы, вашему вниманию предлагается экскурсионное обслуживание во время круиза по Юго-Восточной Азии. С ноября по март каждого года из ряда круизных терминалов Азии отправляются шикарные белоснежные теплоходы по самым разнообразным маршрутам. Одной из самых популярных отправных точек для круизов является город-государство Сингапур. Именно там находится крупнейший круизный терминал Юго-Восточной Азии. В Сингапур хоть и нужна виза для граждан большинства стран бывшего советского союза, но она оформляется в электронном виде без особых сложностей. Поэтому круизы из Сингапура пользуются очень большой популярностью у русскоязычных туристов.</text>
+          <div class="text-center col-12 q-ma-md">
+            <text class="row justify-center text-subtitle2 q-ma-md">Туристическое Агенство Сату-Тур</text>
+
+            <text class="row justify-center text-subtitle2 q-ma-md">Русско-говорящие гиды с широким опытом проведут Ваш персональный VIP тур.</text>
+
+            <text class="row justify-center text-subtitle2 q-ma-md">Для Ваших детей тур Бесплатен. (До 10 лет)</text>
+          </div>
+
         </div>
 
 
@@ -111,22 +125,18 @@
               <q-card-section>
 
                 <div class="row no-wrap items-center">
-                  <div class="col text-h6 ellipsis">
+                  <div class="col text-h6 ellipsis q-ma-md">
                     {{currentExcursion.title}}
-                  </div>
-                  <div class="col-auto text-grey-8 text-caption q-pt-md row no-wrap items-center">
-                    <q-icon name="place" />
-                    {{ currentExcursion.location }}
                   </div>
                 </div>
 
               </q-card-section>
 
               <q-card-section class="q-pt-none">
-                <div class="text-subtitle1">
-                  Цена в Малайзийских Ринггитах・{{currentExcursion.price}}
+                <div class="text-subtitle1 q-ma-md">
+                  Стоимость Тура・{{currentExcursion.price}}
                 </div>
-                <div class="text-caption text-grey-8">
+                <div class="text-body2 text-grey-9 q-ma-md">
                   {{currentExcursion.description}}
                 </div>
               </q-card-section>
@@ -173,22 +183,18 @@
               <q-card-section>
 
                 <div class="row no-wrap items-center">
-                  <div class="col text-h6 ellipsis row">
+                  <div class="col text-h6 ellipsis row q-ma-md">
                     {{currentExcursion.title}}
-                  </div>
-                  <div class="col-auto text-grey-8 text-caption q-pt-md row no-wrap items-center">
-                    <q-icon name="place" />
-                    {{ currentExcursion.location }}
                   </div>
                 </div>
 
               </q-card-section>
 
               <q-card-section class="q-pt-none">
-                <div class="text-subtitle1">
-                  Цена в Малайзийских Ринггитах・{{currentExcursion.price}}
+                <div class="text-subtitle1 q-ma-md">
+                  Стоимость Тура・{{currentExcursion.price}}
                 </div>
-                <div class="text-caption text-grey-8">
+                <div class="text-body2 text-grey-9 q-ma-md">
                   {{currentExcursion.description}}
                 </div>
               </q-card-section>
@@ -284,54 +290,30 @@ export default{
           location: ""
       },
       excursions: [
-        { title: "Пещеры Бату1",
-          description: "some description here",
-          price: "1",
+        { title: "Обзорный Тур по Куала-Лумпуру",
+          description: "Обзорная экскурсия - это прекрасная возможность познакомиться с Куала Лумпуром. Небольшая прогулка по городу, позволит ознакомиться как со старинной частью города, так и современной. В программу включены одни из самых известных памятников архитектуры, а также просто интересные места. Среди них: Башни-близнецы Петронас (PETRONAS Twin Towers), площадь Независимости, Королевский дворец — символ Конституционной Монархии, Национальная мечеть, Буддийский храм Тян-Хоу. Данная экскурсия также дает возможность полюбоваться на прекрасные образцы мавританского искусства, яркими представителями которого является дворец Султана Абдула Самада и Железнодорожный вокзал. Экскурсию завершит посещение фабрики Батика,где вы увидите традиционное производство росписи по ткани «Батик».",
+          price: "$65/персона при наличии двух персон. 130$ VIP тур для одного человека. Ваши дети проходят бесплатно. Максимальное количество участников 2 человека.",
+          program: "1. Фото стоп у башен Петронас\n2. Храм трёх религий Тян Хоу\n3. Национальная мечеть\n4. Старый ЖД вокзал\n5. Dataran Merdeka – Площадь Независимости\n6. Istana Negara – Королевский дворец\n7. Национальные ремесла",
+          duration: "3,5 часа",
           img: "https://cdn.quasar.dev/img/chicken-salad.jpg",
           location: "Kuala Lumpur"
         }, 
-        { title: "Пещеры Бату2",
-          description: "some description here",
-          price: "2",
+        { title: "Обезьянки Лангуры, Холм Мелавати + Светлячки",
+          description: "Окунитесь в Малайзийскую Сказку. Лангуры - добрые мартышки подарят Вам множество улыбок. Они будут рады не только банану, которым Вы можете их угостить, но и просто посидеть у Вас на плече, рассказывая Вам о жизни в джунглях. Светлячки будут вдохновлять Вас, разжигая свет в вашей Душе, в то время как мистические орлы парящие над Вами дадут ощутить Высоту собственного Духа. Экскурсию дополнит Храм невероятной красоты Богини Шакти, построенный из Розового Мрамора и Форт на холме Мелавати, который оборонял Малайцев от внешних нападений. Эта экскурсия насытит Вас самыми приятными и искренними эмоциями. ",
+          price: "$145/персона. при наличии двух персон. 290$ VIP тур для одного человека. Ваши дети проходят бесплатно. Максимальное количество участников 2 взрослых + 2 ребёнка (до 10 лет)",
+          program: "1. Храм из Розового Мрамора «Сри Шакти»\n2. Кормим Лангуров (милейших обезьян), фотографируемся с ними. \n3. Взбираемся на исторический Холм Мелавати. \n4. Ужин в Волшебном Китайском Ресторане (еда входит в стоимость тура)\n5. Любуемся сияющими светлячками из лодки. ",
+          duration: "6 часов",
           img: "https://cdn.quasar.dev/img/chicken-salad.jpg",
           location: "Kuala Lumpur"
         }, 
-        { title: "Пещеры Бату3",
-          description: "some description here",
-          price: "3",
+        { title: "Пещеры Бату + Гентинг",
+          description: "Экскурсию открывают Пещеры Бату. Которые в 1878 году открыл Американский Натуралист, даже не предполагая, что через 12 лет это место станет главной точкой Индуизма всей Малайзии. Именно в этом месте празднуется знаменитый праздник Тайпусам, шествие которого собирает более 1.5 миллионов человек. Китайский храм Чин Сви силой Буддизма поделится и своими просветлениями. «Путь к Освобождению», проходящий 10 камер ада уверенно подтолкнёт на мысли. Переварить мысли поможет Гентинг Хайлендс - курорт состоящий из парка аттракционов, единственного казино в Малайзии, бесконечного количества ресторанов и всевозможных развлечений. Добро пожаловать в Вашу Фантазию!",
+          price: "$140/персона при наличии двух персон. 280$ VIP тур для одного человека. Максимальное количество участников 2 взрослых + 2 ребёнка (до 10 лет)",
+          program: "1. Поднимаемся на 272 мистические ступеньки что бы попасть в Пещеры Бату. Природный Храм. \n2. По канатной дороге поднимаемся в Китайский храм Чин Сви в горах Гентинга. \n3. Далее, по канатной дороге поднимаемся ещё Выше, что бы оказаться в Курорте Гентинг Хайлендс. Местный Disneyland для детей, Las Vegas для взрослых.  ",
+          duration: "6 часов",
           img: "https://cdn.quasar.dev/img/chicken-salad.jpg",
           location: "Kuala Lumpur"
-        }, 
-        { title: "Пещеры Бату4",
-          description: "some description here",
-          price: "4",
-          img: "https://cdn.quasar.dev/img/chicken-salad.jpg",
-          location: "Kuala Lumpur"
-        }, 
-        { title: "Пещеры Бату5",
-          description: "some description here",
-          price: "5",
-          img: "https://cdn.quasar.dev/img/chicken-salad.jpg",
-          location: "Kuala Lumpur"
-        }, 
-        { title: "Пещеры Бату6",
-          description: "some description here",
-          price: "6",
-          img: "https://cdn.quasar.dev/img/chicken-salad.jpg",
-          location: "Kuala Lumpur"
-        }, 
-        { title: "Пещеры Бату7",
-          description: "some description here",
-          price: "7",
-          img: "https://cdn.quasar.dev/img/chicken-salad.jpg",
-          location: "Kuala Lumpur"
-        }, 
-        { title: "Пещеры Бату8",
-          description: "some description here",
-          price: "8",
-          img: "https://cdn.quasar.dev/img/chicken-salad.jpg",
-          location: "Kuala Lumpur"
-        }, 
+        }
       ]
     }
     
