@@ -85,20 +85,66 @@
     <Transition> 
     <div v-if="page==2">
       <!--NONE PHONE-->
-      <div v-if="!$q.screen.lt.sm" class="q-pa-md row ">
+      <div v-if="!$q.screen.lt.sm" class="q-pa-md row">
 
-        <div v-for="(item, index) in excursions" :key="index">
+        <div v-for="(item, index) in excursions" :key="index" class="col-4">
           <q-card class="my-card q-ma-md">
-            <q-img src="https://cdn.quasar.dev/img/parallax2.jpg" style="height: 250px; max-width: 300px">
+            <q-img src="https://cdn.quasar.dev/img/parallax2.jpg" style="height: 250px; max-width: 1000px">
               <div class="absolute-bottom">
                 <div class="text-h6">{{ item.title }}</div>
               </div>
             </q-img>
 
             <q-card-actions>
-              <q-btn flat>Подробнее</q-btn>
+              <q-btn flat @click="excursion_details=true">Подробнее</q-btn>
             </q-card-actions>
           </q-card>
+
+          <!--DIALOG-->
+          <q-dialog v-model="excursion_details"
+          >
+            <q-card class="my-card" style="width: 700px; max-width: 80vw;">
+              <q-img :src="item.img" />
+
+              <q-card-section>
+                <q-btn
+                  fab
+                  color="primary"
+                  icon="place"
+                  class="absolute"
+                  style="top: 0; right: 12px; transform: translateY(-50%);"
+                />
+
+                <div class="row no-wrap items-center">
+                  <div class="col text-h6 ellipsis">
+                    {{item.title}}
+                  </div>
+                  <div class="col-auto text-grey text-caption q-pt-md row no-wrap items-center">
+                    <q-icon name="place" />
+                    {{ item.location }}
+                  </div>
+                </div>
+
+              </q-card-section>
+
+              <q-card-section class="q-pt-none">
+                <div class="text-subtitle1">
+                  $・{{item.price}}
+                </div>
+                <div class="text-caption text-grey">
+                  {{item.description}}
+                </div>
+              </q-card-section>
+
+              <q-separator />
+
+              <q-card-actions align="right">
+                <q-btn v-close-popup flat color="primary" label="Reserve" />
+                <q-btn v-close-popup flat color="primary" round icon="event" />
+              </q-card-actions>
+            </q-card>
+          </q-dialog>
+
         </div>
 
 
@@ -110,7 +156,22 @@
       <!--PHONE-->
       <div v-else>
 
+        <div v-for="(item, index) in excursions" :key="index" class="col-4">
+          <q-card class="my-card q-ma-md">
+            <q-img src="https://cdn.quasar.dev/img/parallax2.jpg" style="height: 250px; max-width: 1000px">
+              <div class="absolute-bottom">
+                <div class="text-h6">{{ item.title }}</div>
+              </div>
+            </q-img>
 
+            <q-card-actions>
+              <q-btn flat>Подробнее</q-btn>
+            </q-card-actions>
+          </q-card>
+
+          <!--DIALOG-->
+
+        </div>
 
         <q-btn round color="green-14" class="fixed-bottom-right q-ma-sm" size="md" @click="whatsapp">
           <q-img src="../assets/iconswhatsapp.svg" style="height: 30px; max-width: 30px"/>  
@@ -146,46 +207,55 @@ export default{
   data() {
     return{
       page: 1,
+      excursion_details: false,
       excursions: [
-        { title: "Пещеры Бату",
+        { title: "Пещеры Бату1",
           description: "1",
           price: "1",
-          img: null
+          img: "https://cdn.quasar.dev/img/chicken-salad.jpg",
+          location: "Kuala Lumpur"
         }, 
-        { title: "Пещеры Бату",
-          description: "1",
-          price: "1",
-          img: null
+        { title: "Пещеры Бату2",
+          description: "2",
+          price: "2",
+          img: "https://cdn.quasar.dev/img/chicken-salad.jpg",
+          location: "Kuala Lumpur"
         }, 
-        { title: "Пещеры Бату",
-          description: "1",
-          price: "1",
-          img: null
+        { title: "Пещеры Бату3",
+          description: "3",
+          price: "3",
+          img: "https://cdn.quasar.dev/img/chicken-salad.jpg",
+          location: "Kuala Lumpur"
         }, 
-        { title: "Пещеры Бату",
-          description: "1",
-          price: "1",
-          img: null
+        { title: "Пещеры Бату4",
+          description: "4",
+          price: "4",
+          img: "https://cdn.quasar.dev/img/chicken-salad.jpg",
+          location: "Kuala Lumpur"
         }, 
-        { title: "Пещеры Бату",
-          description: "1",
-          price: "1",
-          img: null
+        { title: "Пещеры Бату5",
+          description: "5",
+          price: "5",
+          img: "https://cdn.quasar.dev/img/chicken-salad.jpg",
+          location: "Kuala Lumpur"
         }, 
-        { title: "Пещеры Бату",
-          description: "1",
-          price: "1",
-          img: null
+        { title: "Пещеры Бату6",
+          description: "6",
+          price: "6",
+          img: "https://cdn.quasar.dev/img/chicken-salad.jpg",
+          location: "Kuala Lumpur"
         }, 
-        { title: "Пещеры Бату",
-          description: "1",
-          price: "1",
-          img: null
+        { title: "Пещеры Бату7",
+          description: "7",
+          price: "7",
+          img: "https://cdn.quasar.dev/img/chicken-salad.jpg",
+          location: "Kuala Lumpur"
         }, 
-        { title: "Пещеры Бату",
-          description: "1",
-          price: "1",
-          img: null
+        { title: "Пещеры Бату8",
+          description: "8",
+          price: "8",
+          img: "https://cdn.quasar.dev/img/chicken-salad.jpg",
+          location: "Kuala Lumpur"
         }, 
       ]
     }
