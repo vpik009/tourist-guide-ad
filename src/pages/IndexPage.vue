@@ -96,25 +96,27 @@
             </q-img>
 
             <q-card-actions>
-              <q-btn flat @click="excursion_details=true">Подробнее</q-btn>
+              <q-btn flat @click="saveExcursionDetails(item), excursion_details=true">Подробнее</q-btn>
             </q-card-actions>
           </q-card>
 
-          <!--DIALOG-->
+        </div>
+
+        <!--DIALOG-->
           <q-dialog v-model="excursion_details"
           >
             <q-card class="my-card" style="width: 700px; max-width: 80vw;">
-              <q-img :src="item.img" />
+              <q-img :src="currentExcursion.img" />
 
               <q-card-section>
 
                 <div class="row no-wrap items-center">
                   <div class="col text-h6 ellipsis">
-                    {{item.title}}
+                    {{currentExcursion.title}}
                   </div>
-                  <div class="col-auto text-grey-7 text-caption q-pt-md row no-wrap items-center">
+                  <div class="col-auto text-grey-8 text-caption q-pt-md row no-wrap items-center">
                     <q-icon name="place" />
-                    {{ item.location }}
+                    {{ currentExcursion.location }}
                   </div>
                 </div>
 
@@ -122,10 +124,10 @@
 
               <q-card-section class="q-pt-none">
                 <div class="text-subtitle1">
-                  MYR・{{item.price}}
+                  MYR・{{currentExcursion.price}}
                 </div>
-                <div class="text-caption text-grey-7">
-                  {{item.description}}
+                <div class="text-caption text-grey-8">
+                  {{currentExcursion.description}}
                 </div>
               </q-card-section>
 
@@ -136,8 +138,6 @@
               </q-card-actions>
             </q-card>
           </q-dialog>
-
-        </div>
 
 
         <q-btn round color="green-14" class="fixed-bottom-right q-ma-sm" size="lg" @click="whatsapp">
@@ -157,26 +157,28 @@
             </q-img>
 
             <q-card-actions>
-              <q-btn flat @click="excursion_details=index+1">Подробнее</q-btn>
+              <q-btn flat @click="saveExcursionDetails(item), excursion_details=true">Подробнее</q-btn>
             </q-card-actions>
           </q-card>
 
-          <!--DIALOG-->
+        </div>
+
+        <!--DIALOG-->
           <q-dialog v-model="excursion_details"
             full-width
           >
             <q-card class="my-card">
-              <q-img :src="item.img" />
+              <q-img :src="currentExcursion.img" />
 
               <q-card-section>
 
                 <div class="row no-wrap items-center">
                   <div class="col text-h6 ellipsis row">
-                    {{item.title}}
+                    {{currentExcursion.title}}
                   </div>
-                  <div class="col-auto text-grey-7 text-caption q-pt-md row no-wrap items-center">
+                  <div class="col-auto text-grey-8 text-caption q-pt-md row no-wrap items-center">
                     <q-icon name="place" />
-                    {{ item.location }}
+                    {{ currentExcursion.location }}
                   </div>
                 </div>
 
@@ -184,10 +186,10 @@
 
               <q-card-section class="q-pt-none">
                 <div class="text-subtitle1">
-                  MYR・{{item.price}}
+                  MYR・{{currentExcursion.price}}
                 </div>
-                <div class="text-caption text-grey-7">
-                  {{item.description}}
+                <div class="text-caption text-grey-8">
+                  {{currentExcursion.description}}
                 </div>
               </q-card-section>
 
@@ -198,8 +200,6 @@
               </q-card-actions>
             </q-card>
           </q-dialog>
-
-        </div>
 
         <q-btn round color="green-14" class="fixed-bottom-right q-ma-sm" size="md" @click="whatsapp">
           <q-img src="../assets/iconswhatsapp.svg" style="height: 30px; max-width: 30px"/>  
@@ -213,6 +213,46 @@
     <!--PAGE 3-->
     <Transition> 
     <div v-if="page==3">
+
+      <!--NONE PHONE-->
+      <div v-if="!$q.screen.lt.sm" class="q-pa-md row justify-center">
+          <q-card class="my-card col-8">
+            <q-card-section>
+
+              <div class="q-ma-md q-mt-xl" >
+                <text align="left" class="q-pa-md q-ml-xl text-h3  row" >Отзывы отсутствуют...</text>
+
+                <!-- <q-separator/> -->
+
+          
+              </div>
+            
+            </q-card-section>
+          </q-card>
+
+
+          <q-btn round color="green-14" class="fixed-bottom-right q-ma-sm" size="lg" @click="whatsapp">
+            <q-img src="../assets/iconswhatsapp.svg" style="height: 45px; max-width: 45px"/>  
+          </q-btn>
+
+        </div>
+
+
+        <!--PHONE-->
+        <div v-else>
+
+          <div class="q-ma-md q-mt-xl col-12" >
+            <text align="left" class="q-pa-md text-h5 col-12 row" >Отзывы отсутствуют...</text>
+
+          </div>
+
+
+          <q-btn round color="green-14" class="fixed-bottom-right q-ma-sm" size="md" @click="whatsapp">
+            <q-img src="../assets/iconswhatsapp.svg" style="height: 30px; max-width: 30px"/>  
+          </q-btn>
+
+        </div>
+    
     </div>
     </Transition> 
 
@@ -235,52 +275,59 @@ export default{
   data() {
     return{
       page: 1,
-      excursion_details: 0, // 0 = none, 1 = first card, 2 = second ... etc
+      excursion_details: false,
+      currentExcursion: {
+          title: "",
+          description: "",
+          price: "",
+          img: "",
+          location: ""
+      },
       excursions: [
         { title: "Пещеры Бату1",
-          description: "1",
+          description: "some description here",
           price: "1",
           img: "https://cdn.quasar.dev/img/chicken-salad.jpg",
           location: "Kuala Lumpur"
         }, 
         { title: "Пещеры Бату2",
-          description: "2",
+          description: "some description here",
           price: "2",
           img: "https://cdn.quasar.dev/img/chicken-salad.jpg",
           location: "Kuala Lumpur"
         }, 
         { title: "Пещеры Бату3",
-          description: "3",
+          description: "some description here",
           price: "3",
           img: "https://cdn.quasar.dev/img/chicken-salad.jpg",
           location: "Kuala Lumpur"
         }, 
         { title: "Пещеры Бату4",
-          description: "4",
+          description: "some description here",
           price: "4",
           img: "https://cdn.quasar.dev/img/chicken-salad.jpg",
           location: "Kuala Lumpur"
         }, 
         { title: "Пещеры Бату5",
-          description: "5",
+          description: "some description here",
           price: "5",
           img: "https://cdn.quasar.dev/img/chicken-salad.jpg",
           location: "Kuala Lumpur"
         }, 
         { title: "Пещеры Бату6",
-          description: "6",
+          description: "some description here",
           price: "6",
           img: "https://cdn.quasar.dev/img/chicken-salad.jpg",
           location: "Kuala Lumpur"
         }, 
         { title: "Пещеры Бату7",
-          description: "7",
+          description: "some description here",
           price: "7",
           img: "https://cdn.quasar.dev/img/chicken-salad.jpg",
           location: "Kuala Lumpur"
         }, 
         { title: "Пещеры Бату8",
-          description: "8",
+          description: "some description here",
           price: "8",
           img: "https://cdn.quasar.dev/img/chicken-salad.jpg",
           location: "Kuala Lumpur"
@@ -292,6 +339,13 @@ export default{
   methods:{
     whatsapp(){
       window.location = "https://api.whatsapp.com/send?phone=+79150694774&text=Здравствуйте, меня интересуют туры SATU";
+    },
+    saveExcursionDetails(excursion){
+      this.currentExcursion.title = excursion.title;
+      this.currentExcursion.description = excursion.description;
+      this.currentExcursion.price = excursion.price;
+      this.currentExcursion.img = excursion.img;
+      this.currentExcursion.location = excursion.location;
     }
   }
 }
