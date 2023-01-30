@@ -56,7 +56,7 @@
         </q-card>
 
 
-        <q-btn round color="green-14" class="fixed-bottom-right q-ma-sm" size="lg" @click="whatsapp">
+        <q-btn round color="green-14" class="fixed-bottom-right q-ma-lg" size="xl" @click="whatsapp">
           <q-img src="../assets/iconswhatsapp.svg" style="height: 45px; max-width: 45px"/>  
         </q-btn>
 
@@ -124,7 +124,7 @@
 
               <q-card-section class="q-pt-none">
                 <div class="text-subtitle1">
-                  MYR・{{currentExcursion.price}}
+                  Цена в Малайзийских Ринггитах・{{currentExcursion.price}}
                 </div>
                 <div class="text-caption text-grey-8">
                   {{currentExcursion.description}}
@@ -140,7 +140,7 @@
           </q-dialog>
 
 
-        <q-btn round color="green-14" class="fixed-bottom-right q-ma-sm" size="lg" @click="whatsapp">
+        <q-btn round color="green-14" class="fixed-bottom-right q-ma-lg" size="xl" @click="whatsapp">
           <q-img src="../assets/iconswhatsapp.svg" style="height: 45px; max-width: 45px"/>  
         </q-btn>
 
@@ -186,7 +186,7 @@
 
               <q-card-section class="q-pt-none">
                 <div class="text-subtitle1">
-                  MYR・{{currentExcursion.price}}
+                  Цена в Малайзийских Ринггитах・{{currentExcursion.price}}
                 </div>
                 <div class="text-caption text-grey-8">
                   {{currentExcursion.description}}
@@ -231,7 +231,7 @@
           </q-card>
 
 
-          <q-btn round color="green-14" class="fixed-bottom-right q-ma-sm" size="lg" @click="whatsapp">
+          <q-btn round color="green-14" class="fixed-bottom-right q-ma-lg" size="xl" @click="whatsapp">
             <q-img src="../assets/iconswhatsapp.svg" style="height: 45px; max-width: 45px"/>  
           </q-btn>
 
