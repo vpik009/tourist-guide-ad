@@ -121,6 +121,7 @@
           >
             <q-card class="my-card" style="width: 700px; max-width: 80vw;">
               <q-img :src="currentExcursion.img" />
+              <!-- <iframe width="700" height="400" src="https://www.youtube.com/embed/Y1xuHnhphNo?list=RDY1xuHnhphNo" title="Throat singing - 'Olor Bolzo Olorim'" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> -->
 
               <q-card-section>
 
