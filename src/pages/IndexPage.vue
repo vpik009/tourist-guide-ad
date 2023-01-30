@@ -107,19 +107,12 @@
               <q-img :src="item.img" />
 
               <q-card-section>
-                <q-btn
-                  fab
-                  color="primary"
-                  icon="place"
-                  class="absolute"
-                  style="top: 0; right: 12px; transform: translateY(-50%);"
-                />
 
                 <div class="row no-wrap items-center">
                   <div class="col text-h6 ellipsis">
                     {{item.title}}
                   </div>
-                  <div class="col-auto text-grey text-caption q-pt-md row no-wrap items-center">
+                  <div class="col-auto text-grey-7 text-caption q-pt-md row no-wrap items-center">
                     <q-icon name="place" />
                     {{ item.location }}
                   </div>
@@ -129,9 +122,9 @@
 
               <q-card-section class="q-pt-none">
                 <div class="text-subtitle1">
-                  $・{{item.price}}
+                  MYR・{{item.price}}
                 </div>
-                <div class="text-caption text-grey">
+                <div class="text-caption text-grey-7">
                   {{item.description}}
                 </div>
               </q-card-section>
@@ -139,8 +132,7 @@
               <q-separator />
 
               <q-card-actions align="right">
-                <q-btn v-close-popup flat color="primary" label="Reserve" />
-                <q-btn v-close-popup flat color="primary" round icon="event" />
+                <q-btn v-close-popup flat color="primary" label="Закрыть" />
               </q-card-actions>
             </q-card>
           </q-dialog>
@@ -165,11 +157,47 @@
             </q-img>
 
             <q-card-actions>
-              <q-btn flat>Подробнее</q-btn>
+              <q-btn flat @click="excursion_details=index+1">Подробнее</q-btn>
             </q-card-actions>
           </q-card>
 
           <!--DIALOG-->
+          <q-dialog v-model="excursion_details"
+            full-width
+          >
+            <q-card class="my-card">
+              <q-img :src="item.img" />
+
+              <q-card-section>
+
+                <div class="row no-wrap items-center">
+                  <div class="col text-h6 ellipsis row">
+                    {{item.title}}
+                  </div>
+                  <div class="col-auto text-grey-7 text-caption q-pt-md row no-wrap items-center">
+                    <q-icon name="place" />
+                    {{ item.location }}
+                  </div>
+                </div>
+
+              </q-card-section>
+
+              <q-card-section class="q-pt-none">
+                <div class="text-subtitle1">
+                  MYR・{{item.price}}
+                </div>
+                <div class="text-caption text-grey-7">
+                  {{item.description}}
+                </div>
+              </q-card-section>
+
+              <q-separator />
+
+              <q-card-actions align="right">
+                <q-btn v-close-popup flat color="primary" label="Закрыть" />
+              </q-card-actions>
+            </q-card>
+          </q-dialog>
 
         </div>
 
@@ -207,7 +235,7 @@ export default{
   data() {
     return{
       page: 1,
-      excursion_details: false,
+      excursion_details: 0, // 0 = none, 1 = first card, 2 = second ... etc
       excursions: [
         { title: "Пещеры Бату1",
           description: "1",
