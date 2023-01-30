@@ -1,6 +1,6 @@
-# tourist guide site (tourist-guide-ad)
+# tour guide site (tourist-guide-ad)
 
-website for Russian speaking tour guide in Malaysia
+tour guides in Malaysia site
 
 ## Install the dependencies
 ```bash
