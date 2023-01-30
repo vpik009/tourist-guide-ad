@@ -338,7 +338,7 @@ export default{
   },
   methods:{
     whatsapp(){
-      window.location = "https://api.whatsapp.com/send?phone=+79150694774&text=Здравствуйте, меня интересуют туры SATU";
+      window.location = "https://api.whatsapp.com/send?phone=+79150694774&text=Здравствуйте, меня интересуют туры САТУ";
     },
     saveExcursionDetails(excursion){
       this.currentExcursion.title = excursion.title;
