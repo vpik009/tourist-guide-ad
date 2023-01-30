@@ -10,8 +10,9 @@
           aria-label="Menu"
           @click="toggleLeftDrawer"
         />
-        
+
       </q-toolbar>
+
     </q-header>
 
     <q-drawer
