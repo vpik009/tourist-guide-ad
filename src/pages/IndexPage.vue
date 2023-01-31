@@ -232,12 +232,49 @@
     <div v-if="page==3">
 
       <!--NONE PHONE-->
-      <div v-if="!$q.screen.lt.sm" class="q-pa-md row justify-center">
-          <q-card class="my-card col-8">
+      <div v-if="!$q.screen.lt.sm" class="q-pa-md row justify-center q-mb-xl">
+
+        <div class="col-8 justify-center q-ma-md q-mb-xl">
+            <text class="text-h6 row col-12 q-ma-md q-mt-xl"> Оставьте свой отзыв </text>
+            <q-rating
+                    class="q-ma-md q-ma-md"
+                    v-model="reviewScore"
+                    size="2em"
+                    color="orange"
+                    disable
+            />
+            <q-input outlined disable v-model="reviewName" class="col-6" label="Имя (Отзывы временно отключены...)" />
+            <q-input outlined disable v-model="reviewText" label="Комментарий (Отзывы временно отключены...)" />
+            <div align="center">
+              <q-btn disable color="primary" class="q-ma-md" label="Оставить отзыв" />
+            </div>
+      
+
+          </div>
+
+          <div class="col-8 justify-center q-ma-md q-mb-none">
+            <text class="text-h4 row col-12 q-ma-md q-mt-xl"> Отзывы </text>
+          </div>
+
+          <q-card class="my-card col-8" v-for="(rating, index) in ratings" :key=index>
             <q-card-section>
 
-              <div class="q-ma-md q-mt-xl" >
-                <text align="left" class="q-pa-md q-ml-xl text-h3  row" >Отзывы отсутствуют...</text>
+              <div class="q-ma-md q-mt-xl row col-12" >
+                <!-- <text align="left" class="q-pa-md q-ml-xl text-h3  row" >Отзывы отсутствуют...</text> -->
+
+                <text class="text-weight-bold text-h6 q-ma-md">
+                    {{ rating.name }}
+                </text>
+                <q-rating
+                  class="q-ma-md q-ma-md"
+                  v-model="rating.score"
+                  size="2.5em"
+                  color="orange"
+                  readonly
+                />
+                <text class="text-subtitle1 q-ma-md row col-12">
+                    {{ rating.comment }}
+                </text>
 
                 <!-- <q-separator/> -->
 
@@ -293,6 +330,9 @@ export default{
     return{
       page: 1,
       excursion_details: false,
+      reviewName: "",
+      reviewText: "",
+      reviewScore: 0,
       currentExcursion: {
           title: "",
           description: "",
@@ -324,6 +364,23 @@ export default{
           duration: "6 часов",
           img: "https://cdn.quasar.dev/img/chicken-salad.jpg",
           location: "Kuala Lumpur"
+        }
+      ],
+      ratings: [
+        {
+          name: "Викентий Кузнецов",
+          score: "5",
+          comment: "Удивительные экскурсии и очень знающий гид. Детям очень понравилось. "
+        },
+        {
+          name: "Тимур Эргашев",
+          score: "5",
+          comment: "Дружелюбный гид и подробные туры."
+        },
+        {
+          name: "Наталья Степаненко",
+          score: "4.5",
+          comment: "Взяли туры в гентинг и пещеры бату, очень понравилось. Мне очень понравился сам гид! 😏 Я настаивала и попросила его пойти в кино на следующие выходные.Он сказал нет, прости, Наташ, я очень занят. Он дошел до того, что сообщил мне, что будет занят в течение следующих нескольких лет. 😡"
         }
       ]
     }
