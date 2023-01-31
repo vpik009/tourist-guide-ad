@@ -23,20 +23,30 @@
     </div>
     <div class="full-width row q-pl-md q-pr-md justify-center">
 
-      <q-btn v-if="page==1" align="center" class="q-ml-sm text-weight-bold" flat color="primary" label="Главная" />
+      <!-- <q-btn v-if="page==1" align="center" class="q-ml-sm text-weight-bold" flat color="primary" label="Главная" />
       <q-btn v-else align="center" class="q-ml-sm text-weight-bold" flat label="Главная" @click="page=1"/>
 
       <q-btn v-if="page==2" align="center" class="q-ml-sm text-weight-bold" flat color="primary" label="Экскурсии"  />
       <q-btn v-else align="center" class="q-ml-sm text-weight-bold" flat label="Экскурсии" @click="page=2"/>
 
       <q-btn v-if="page==3" align="center" class="q-ml-sm text-weight-bold" flat color="primary" label="Отзывы" />
-      <q-btn v-else align="center" class="q-ml-sm text-weight-bold" flat label="Отзывы" @click="page=3"/>
+      <q-btn v-else align="center" class="q-ml-sm text-weight-bold" flat label="Отзывы" @click="page=3"/> -->
+
+
+      <q-tabs
+        v-model="page"
+        class="text-primary"
+      >
+        <q-tab name="1" icon="home" label="Главная" />
+        <q-tab name="2" icon="airport_shuttle" label="Экскурсии" />
+        <q-tab name="3" icon="rate_review" label="Отзывы" />
+      </q-tabs>
 
     </div>
 
     
     <!--PAGE 1-->
-    <Transition> 
+    <!-- <Transition>  -->
     <div v-if="page==1">
       <!--NONE PHONE-->
       <div v-if="!$q.screen.lt.sm" class="q-pa-md row justify-center">
@@ -93,10 +103,10 @@
 
       </div>
     </div>
-    </Transition>
+    <!-- </Transition> -->
 
     <!--PAGE 2-->
-    <Transition> 
+    <!-- <Transition>  -->
     <div v-if="page==2">
       <!--NONE PHONE-->
       <div v-if="!$q.screen.lt.sm" class="q-pa-md row">
@@ -214,11 +224,11 @@
       </div>
 
     </div>
-    </Transition> 
+    <!-- </Transition>  -->
 
 
     <!--PAGE 3-->
-    <Transition> 
+    <!-- <Transition>  -->
     <div v-if="page==3">
 
       <!--NONE PHONE-->
@@ -261,7 +271,7 @@
         </div>
     
     </div>
-    </Transition> 
+    <!-- </Transition>  -->
 
   </q-page>
 </template>
