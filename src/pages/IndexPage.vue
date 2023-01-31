@@ -296,9 +296,53 @@
         <div v-else>
 
           <div class="q-ma-md q-mt-xl col-12" >
-            <text align="left" class="q-pa-md text-h5 col-12 row" >Отзывы отсутствуют...</text>
+            <text class="text-h6 row col-12 q-ma-md q-mt-xl"> Оставьте свой отзыв </text>
+            <q-rating
+                    class="q-ma-md q-ma-md"
+                    v-model="reviewScore"
+                    size="2em"
+                    color="orange"
+                    disable
+            />
+            <q-input outlined disable v-model="reviewName" class="col-6" label="Имя (Отзывы временно отключены...)" />
+            <q-input outlined disable v-model="reviewText" label="Комментарий (Отзывы временно отключены...)" />
+            <div align="center">
+              <q-btn disable color="primary" class="q-ma-md" label="Оставить отзыв" />
+            </div>
 
           </div>
+
+          <div class="col-8 justify-center q-ma-md q-mb-none">
+            <text class="text-h4 row col-12 q-ma-md q-mt-xl"> Отзывы </text>
+          </div>
+
+          <q-card class="my-card col-8" v-for="(rating, index) in ratings" :key=index>
+            <q-card-section>
+
+              <div class="q-ma-md q-mt-xl row col-12" >
+                <!-- <text align="left" class="q-pa-md q-ml-xl text-h3  row" >Отзывы отсутствуют...</text> -->
+
+                <text class="text-weight-bold text-subtitle1 q-ma-md q-mb-none">
+                    {{ rating.name }}
+                </text>
+                <q-rating
+                  class="q-ma-md q-ma-md q-mt-none"
+                  v-model="rating.score"
+                  size="2em"
+                  color="orange"
+                  readonly
+                />
+                <text class="text-subtitle1 q-ma-md row col-12">
+                    {{ rating.comment }}
+                </text>
+
+                <!-- <q-separator/> -->
+
+          
+              </div>
+            
+            </q-card-section>
+          </q-card>
 
 
           <q-btn round color="green-14" class="fixed-bottom-right q-ma-sm" size="md" @click="whatsapp">
