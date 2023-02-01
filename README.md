@@ -1,3 +1,7 @@
+# HOSTED
+https://storied-otter-25859d.netlify.app/#/
+
+
 # tour guide site (tourist-guide-ad)
 
 tour guides in Malaysia site
