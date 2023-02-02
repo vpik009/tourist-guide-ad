@@ -1,7 +1,9 @@
 <template>
   <q-page>
     
+    
     <div class="q-pa-md">
+      <Transition>
       <q-carousel
         animated
         v-model="slide"
@@ -14,13 +16,16 @@
         transition-next="slide-left"
         @mouseenter="autoplay = false"
         @mouseleave="autoplay = true"
+        v-if="page==1"
       >
         <q-carousel-slide :name="1" img-src="https://upload.wikimedia.org/wikipedia/commons/f/fc/Moonrise_over_kuala_lumpur.jpg" />
         <q-carousel-slide :name="2" img-src="https://www.gentingskyworlds.com/content/dam/approved/genting-skyworlds/web/home/tickets/skyworlds_tickets.jpg" />
         <q-carousel-slide :name="3" img-src="https://youimg1.tripcdn.com/target/0104i12000936jbfzEB29.jpg?proc=source%2Ftrip" />
         <q-carousel-slide :name="4" img-src="https://advantiko.com/wp-content/uploads/2020/06/Poezdka_na_reku_svetlyachkov_v_KualaSelangore_3.jpg" />
       </q-carousel>
+      </Transition>
     </div>
+    
     <div class="full-width row q-pl-md q-pr-md justify-center">
 
       <!-- <q-btn v-if="page==1" align="center" class="q-ml-sm text-weight-bold" flat color="primary" label="Главная" />
