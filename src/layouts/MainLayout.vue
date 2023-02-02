@@ -1,17 +1,14 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-    <q-header elevated>
+    <q-header elevated bordered class="bg-white text-primary">
       <q-toolbar>
-        <!-- <q-btn
-          flat
-          dense
-          round
-          icon="menu"
-          aria-label="Menu"
-          @click="toggleLeftDrawer"
-        /> -->
-
-      </q-toolbar>
+          <q-toolbar-title class="text-center">
+            <q-avatar>
+              <img src="https://cdn.quasar.dev/logo-v2/svg/logo.svg">
+            </q-avatar>
+            САТУ-ТУР
+          </q-toolbar-title>
+        </q-toolbar>
 
     </q-header>
 
