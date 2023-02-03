@@ -1,10 +1,10 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-    <q-header elevated bordered class="bg-white text-primary">
+    <q-header elevated bordered class="bg-black text-white">
       <q-toolbar>
           <q-toolbar-title class="text-center">
             <q-avatar>
-              <img src="../assets/logo4.png">
+              <img src="../assets/logo.png">
             </q-avatar>
             САТУ-ТУР
           </q-toolbar-title>
