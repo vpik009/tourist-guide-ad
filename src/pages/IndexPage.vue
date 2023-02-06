@@ -21,10 +21,10 @@
       >
         <q-carousel-slide :name="1" img-src="https://upload.wikimedia.org/wikipedia/commons/f/fc/Moonrise_over_kuala_lumpur.jpg" />
         <q-carousel-slide :name="2" img-src="https://www.gentingskyworlds.com/content/dam/approved/genting-skyworlds/web/home/tickets/skyworlds_tickets.jpg" />
-        <q-carousel-slide :name="3" img-src="../assets/batu1.jpg" />
-        <q-carousel-slide :name="4" img-src="../assets/batu2.jpg" />
-        <q-carousel-slide :name="5" img-src="../assets/batu3.jpg" />
-        <q-carousel-slide :name="6" img-src="../assets/chinwee.jpeg" />
+        <q-carousel-slide :name="3" img-src="/public/batu1.jpg" />
+        <q-carousel-slide :name="4" img-src="/public/batu2.jpg" />
+        <q-carousel-slide :name="5" img-src="/public/batu3.jpg" />
+        <q-carousel-slide :name="6" img-src="/public/chinwee.jpeg" />
         <q-carousel-slide :name="7" img-src="https://advantiko.com/wp-content/uploads/2020/06/Poezdka_na_reku_svetlyachkov_v_KualaSelangore_3.jpg" />
       </q-carousel>
       </Transition>
@@ -124,7 +124,7 @@
 
         <div v-for="(item, index) in excursions" :key="index" class="col-4">
           <q-card class="my-card q-ma-md">
-            <q-img src="https://cdn.quasar.dev/img/parallax2.jpg" style="height: 250px; max-width: 1000px">
+            <q-img :src="item.cardimg" style="height: 250px; max-width: 1000px">
               <div class="absolute-bottom">
                 <div class="text-h6">{{ item.title }}</div>
               </div>
@@ -141,7 +141,11 @@
           <q-dialog v-model="excursion_details"
           >
             <q-card class="my-card" style="width: 700px; max-width: 80vw;">
-              <q-img :src="currentExcursion.img" />
+              <q-video
+                allowfullscreen
+                :ratio="16/9"
+                :src="currentExcursion.content"
+              />
               <!-- <iframe width="700" height="400" src="https://www.youtube.com/embed/Y1xuHnhphNo?list=RDY1xuHnhphNo" title="Throat singing - 'Olor Bolzo Olorim'" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> -->
 
               <q-card-section>
@@ -182,7 +186,7 @@
 
         <div v-for="(item, index) in excursions" :key="index" class="col-4">
           <q-card class="my-card q-ma-md">
-            <q-img src="https://cdn.quasar.dev/img/parallax2.jpg" style="height: 250px; max-width: 1000px">
+            <q-img :src="item.cardimg" style="height: 250px; max-width: 1000px">
               <div class="absolute-bottom">
                 <div class="text-h6">{{ item.title }}</div>
               </div>
@@ -200,9 +204,13 @@
             full-width
           >
             <q-card class="my-card">
+
               <q-video
-                  :src="currentExcursion.content"
-                />
+                allowfullscreen
+                :ratio="16/9"
+                :src="currentExcursion.content"
+              />
+
 
               <q-card-section>
 
@@ -394,6 +402,7 @@ export default{
           title: "",
           description: "",
           price: "",
+          cardimg: "",
           content: "",
           location: ""
       },
@@ -403,7 +412,8 @@ export default{
           price: "$65/персона при наличии двух персон. 130$ VIP тур для одного человека. Ваши дети проходят бесплатно. Максимальное количество участников 2 человека.",
           program: "1. Фото стоп у башен Петронас\n2. Храм трёх религий Тян Хоу\n3. Национальная мечеть\n4. Старый ЖД вокзал\n5. Dataran Merdeka – Площадь Независимости\n6. Istana Negara – Королевский дворец\n7. Национальные ремесла",
           duration: "3,5 часа",
-          content: "../assets/videos/CityTour.mp4",
+          cardimg: `kl.jpg`,
+          content: "videos/video1.mp4",
           location: "Kuala Lumpur"
         }, 
         { title: "Обезьянки Лангуры, Холм Мелавати + Светлячки",
@@ -411,7 +421,8 @@ export default{
           price: "$145/персона. при наличии двух персон. 290$ VIP тур для одного человека. Ваши дети проходят бесплатно. Максимальное количество участников 2 взрослых + 2 ребёнка (до 10 лет)",
           program: "1. Храм из Розового Мрамора «Сри Шакти»\n2. Кормим Лангуров (милейших обезьян), фотографируемся с ними. \n3. Взбираемся на исторический Холм Мелавати. \n4. Ужин в Волшебном Китайском Ресторане (еда входит в стоимость тура)\n5. Любуемся сияющими светлячками из лодки. ",
           duration: "6 часов",
-          content: "../assets/videos/MelawatiAndFireflies.mp4",
+          cardimg: "svetlyachki.jpg",
+          content: "videos/video2.mp4",
           location: "Kuala Lumpur"
         }, 
         { title: "Пещеры Бату + Гентинг",
@@ -419,7 +430,8 @@ export default{
           price: "$140/персона при наличии двух персон. 280$ VIP тур для одного человека. Максимальное количество участников 2 взрослых + 2 ребёнка (до 10 лет)",
           program: "1. Поднимаемся на 272 мистические ступеньки что бы попасть в Пещеры Бату. Природный Храм. \n2. По канатной дороге поднимаемся в Китайский храм Чин Сви в горах Гентинга. \n3. Далее, по канатной дороге поднимаемся ещё Выше, что бы оказаться в Курорте Гентинг Хайлендс. Местный Disneyland для детей, Las Vegas для взрослых.  ",
           duration: "6 часов",
-          content: "../assets/videos/BatuAndGenting",
+          cardimg: "batu3.jpg",
+          content: "videos/video3.mp4",
           location: "Kuala Lumpur"
         }
       ],
@@ -451,8 +463,12 @@ export default{
       this.currentExcursion.title = excursion.title;
       this.currentExcursion.description = excursion.description;
       this.currentExcursion.price = excursion.price;
+      this.currentExcursion.cardimg = excursion.cardimg;
       this.currentExcursion.content = excursion.content;
       this.currentExcursion.location = excursion.location;
+    },
+    getImgUrl(card) {
+      return require(card.cardimg)
     }
   }
 }
