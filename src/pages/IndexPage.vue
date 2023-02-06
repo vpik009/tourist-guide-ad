@@ -200,7 +200,9 @@
             full-width
           >
             <q-card class="my-card">
-              <q-img :src="currentExcursion.img" />
+              <q-video
+                  :src="currentExcursion.content"
+                />
 
               <q-card-section>
 
@@ -392,7 +394,7 @@ export default{
           title: "",
           description: "",
           price: "",
-          img: "",
+          content: "",
           location: ""
       },
       excursions: [
@@ -401,7 +403,7 @@ export default{
           price: "$65/персона при наличии двух персон. 130$ VIP тур для одного человека. Ваши дети проходят бесплатно. Максимальное количество участников 2 человека.",
           program: "1. Фото стоп у башен Петронас\n2. Храм трёх религий Тян Хоу\n3. Национальная мечеть\n4. Старый ЖД вокзал\n5. Dataran Merdeka – Площадь Независимости\n6. Istana Negara – Королевский дворец\n7. Национальные ремесла",
           duration: "3,5 часа",
-          img: "https://cdn.quasar.dev/img/chicken-salad.jpg",
+          content: "../assets/videos/CityTour.mp4",
           location: "Kuala Lumpur"
         }, 
         { title: "Обезьянки Лангуры, Холм Мелавати + Светлячки",
@@ -409,7 +411,7 @@ export default{
           price: "$145/персона. при наличии двух персон. 290$ VIP тур для одного человека. Ваши дети проходят бесплатно. Максимальное количество участников 2 взрослых + 2 ребёнка (до 10 лет)",
           program: "1. Храм из Розового Мрамора «Сри Шакти»\n2. Кормим Лангуров (милейших обезьян), фотографируемся с ними. \n3. Взбираемся на исторический Холм Мелавати. \n4. Ужин в Волшебном Китайском Ресторане (еда входит в стоимость тура)\n5. Любуемся сияющими светлячками из лодки. ",
           duration: "6 часов",
-          img: "https://cdn.quasar.dev/img/chicken-salad.jpg",
+          content: "../assets/videos/MelawatiAndFireflies.mp4",
           location: "Kuala Lumpur"
         }, 
         { title: "Пещеры Бату + Гентинг",
@@ -417,7 +419,7 @@ export default{
           price: "$140/персона при наличии двух персон. 280$ VIP тур для одного человека. Максимальное количество участников 2 взрослых + 2 ребёнка (до 10 лет)",
           program: "1. Поднимаемся на 272 мистические ступеньки что бы попасть в Пещеры Бату. Природный Храм. \n2. По канатной дороге поднимаемся в Китайский храм Чин Сви в горах Гентинга. \n3. Далее, по канатной дороге поднимаемся ещё Выше, что бы оказаться в Курорте Гентинг Хайлендс. Местный Disneyland для детей, Las Vegas для взрослых.  ",
           duration: "6 часов",
-          img: "https://cdn.quasar.dev/img/chicken-salad.jpg",
+          content: "../assets/videos/BatuAndGenting",
           location: "Kuala Lumpur"
         }
       ],
@@ -449,7 +451,7 @@ export default{
       this.currentExcursion.title = excursion.title;
       this.currentExcursion.description = excursion.description;
       this.currentExcursion.price = excursion.price;
-      this.currentExcursion.img = excursion.img;
+      this.currentExcursion.content = excursion.content;
       this.currentExcursion.location = excursion.location;
     }
   }
