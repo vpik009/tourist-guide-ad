@@ -466,9 +466,6 @@ export default{
       this.currentExcursion.cardimg = excursion.cardimg;
       this.currentExcursion.content = excursion.content;
       this.currentExcursion.location = excursion.location;
-    },
-    getImgUrl(card) {
-      return require(card.cardimg)
     }
   }
 }
