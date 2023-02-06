@@ -6,7 +6,7 @@
             <q-avatar>
               <img src="../assets/logo.png">
             </q-avatar>
-            САТУ-ТУР
+            САТУ́-ТУР
           </q-toolbar-title>
         </q-toolbar>
 

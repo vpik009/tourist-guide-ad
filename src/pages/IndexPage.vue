@@ -142,10 +142,14 @@
           >
             <q-card class="my-card" style="width: 700px; max-width: 80vw;">
               <q-video
+                v-if="currentExcursion.content"
                 allowfullscreen
                 :ratio="16/9"
                 :src="currentExcursion.content"
+                style="outline: none;"
               />
+              <q-img v-else :src="currentExcursion.cardimg"/>
+
               <!-- <iframe width="700" height="400" src="https://www.youtube.com/embed/Y1xuHnhphNo?list=RDY1xuHnhphNo" title="Throat singing - 'Olor Bolzo Olorim'" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> -->
 
               <q-card-section>
@@ -206,10 +210,12 @@
             <q-card class="my-card">
 
               <q-video
+                v-if="currentExcursion.content"
                 allowfullscreen
                 :ratio="16/9"
                 :src="currentExcursion.content"
               />
+              <q-img v-else :src="currentExcursion.cardimg"/>
 
 
               <q-card-section>
@@ -433,7 +439,16 @@ export default{
           cardimg: "batu3.jpg",
           content: "videos/video3.mp4",
           location: "Kuala Lumpur"
-        }
+        },
+        { title: "Авторский VIP Тур ",
+          description: "Мы подберем воистину вдохновительный, индивидуально-продуманный тур, учитывающий каждое малейшее пожелание. \nВам достаточно выйти с нами на связь по WhatsApp. Мы обсудим все мысли и всевозможные детали. \nДо встречи в Малайзии! \nJumpa lagi!.",
+          price: "$500",
+          program: "",
+          duration: "",
+          cardimg: `alphadestiny.jpg`,
+          content: "",
+          location: "Kuala Lumpur"
+        }, 
       ],
       ratings: [
         {
