@@ -123,7 +123,7 @@
       <div v-if="!$q.screen.lt.sm" class="q-pa-md row">
 
         <div v-for="(item, index) in excursions" :key="index" class="col-4">
-          <q-card class="my-card q-ma-md">
+          <q-card class="my-card q-ma-md" :style="item.class">
             <q-img :src="item.cardimg" style="height: 250px; max-width: 1000px">
               <div class="absolute-bottom">
                 <div class="text-h6">{{ item.title }}</div>
@@ -148,7 +148,7 @@
                 :src="currentExcursion.content"
                 style="outline: none;"
               />
-              <q-img v-else :src="currentExcursion.cardimg"/>
+              <q-img v-else :src="currentExcursion.cardimg" style="height: 350px; max-width: 1000px"/>
 
               <!-- <iframe width="700" height="400" src="https://www.youtube.com/embed/Y1xuHnhphNo?list=RDY1xuHnhphNo" title="Throat singing - 'Olor Bolzo Olorim'" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> -->
 
@@ -189,17 +189,18 @@
       <div v-else>
 
         <div v-for="(item, index) in excursions" :key="index" class="col-4">
-          <q-card class="my-card q-ma-md">
-            <q-img :src="item.cardimg" style="height: 250px; max-width: 1000px">
-              <div class="absolute-bottom">
-                <div class="text-h6">{{ item.title }}</div>
-              </div>
-            </q-img>
 
-            <q-card-actions>
-              <q-btn flat @click="saveExcursionDetails(item), excursion_details=true">Подробнее</q-btn>
-            </q-card-actions>
-          </q-card>
+            <q-card class="my-card q-ma-md" :style="item.class">
+              <q-img :src="item.cardimg" style="height: 250px; max-width: 1000px">
+                <div class="absolute-bottom">
+                  <div class="text-h6">{{ item.title }}</div>
+                </div>
+              </q-img>
+
+              <q-card-actions>
+                <q-btn flat @click="saveExcursionDetails(item), excursion_details=true">Подробнее</q-btn>
+              </q-card-actions>
+            </q-card>
 
         </div>
 
@@ -215,7 +216,7 @@
                 :ratio="16/9"
                 :src="currentExcursion.content"
               />
-              <q-img v-else :src="currentExcursion.cardimg"/>
+              <q-img v-else :src="currentExcursion.cardimg" style="height: 300px; max-width: 1000px"/>
 
 
               <q-card-section>
@@ -420,7 +421,8 @@ export default{
           duration: "3,5 часа",
           cardimg: `kl.jpg`,
           content: "videos/video1.mp4",
-          location: "Kuala Lumpur"
+          location: "Kuala Lumpur",
+          class: ""
         }, 
         { title: "Обезьянки Лангуры, Холм Мелавати + Светлячки",
           description: "Окунитесь в Малайзийскую Сказку. Лангуры - добрые мартышки подарят Вам множество улыбок. Они будут рады не только банану, которым Вы можете их угостить, но и просто посидеть у Вас на плече, рассказывая Вам о жизни в джунглях. Светлячки будут вдохновлять Вас, разжигая свет в вашей Душе, в то время как мистические орлы парящие над Вами дадут ощутить Высоту собственного Духа. Экскурсию дополнит Храм невероятной красоты Богини Шакти, построенный из Розового Мрамора и Форт на холме Мелавати, который оборонял Малайцев от внешних нападений. Эта экскурсия насытит Вас самыми приятными и искренними эмоциями. ",
@@ -429,7 +431,8 @@ export default{
           duration: "6 часов",
           cardimg: "svetlyachki.jpg",
           content: "videos/video2.mp4",
-          location: "Kuala Lumpur"
+          location: "Kuala Lumpur",
+          class: ""
         }, 
         { title: "Пещеры Бату + Гентинг",
           description: "Экскурсию открывают Пещеры Бату. Которые в 1878 году открыл Американский Натуралист, даже не предполагая, что через 12 лет это место станет главной точкой Индуизма всей Малайзии. Именно в этом месте празднуется знаменитый праздник Тайпусам, шествие которого собирает более 1.5 миллионов человек. Китайский храм Чин Сви силой Буддизма поделится и своими просветлениями. «Путь к Освобождению», проходящий 10 камер ада уверенно подтолкнёт на мысли. Переварить мысли поможет Гентинг Хайлендс - курорт состоящий из парка аттракционов, единственного казино в Малайзии, бесконечного количества ресторанов и всевозможных развлечений. Добро пожаловать в Вашу Фантазию!",
@@ -438,7 +441,8 @@ export default{
           duration: "6 часов",
           cardimg: "batu3.jpg",
           content: "videos/video3.mp4",
-          location: "Kuala Lumpur"
+          location: "Kuala Lumpur",
+          class: ""
         },
         { title: "Авторский VIP Тур ",
           description: "Мы подберем воистину вдохновительный, индивидуально-продуманный тур, учитывающий каждое малейшее пожелание. \nВам достаточно выйти с нами на связь по WhatsApp. Мы обсудим все мысли и всевозможные детали. \nДо встречи в Малайзии! \nJumpa lagi!.",
@@ -447,7 +451,8 @@ export default{
           duration: "",
           cardimg: `alphadestiny.jpg`,
           content: "",
-          location: "Kuala Lumpur"
+          location: "Kuala Lumpur",
+          class: "border-style: solid; border-radius: 5px; border-color: #262626;"
         }, 
       ],
       ratings: [
