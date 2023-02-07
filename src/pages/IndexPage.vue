@@ -211,6 +211,7 @@
             <q-card class="my-card">
 
               <q-video
+              style="height: 500px; max-width: 1000px"
                 v-if="currentExcursion.content"
                 allowfullscreen
                 :ratio="16/9"
