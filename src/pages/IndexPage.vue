@@ -5,6 +5,7 @@
     <div class="q-pa-md">
       <Transition>
       <q-carousel
+        style="border-radius: 10px;"
         animated
         v-model="slide"
         height="400px"
