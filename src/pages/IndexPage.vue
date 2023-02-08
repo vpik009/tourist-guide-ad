@@ -451,7 +451,7 @@ export default{
           price: "$500",
           program: "",
           duration: "",
-          cardimg: `alphadestiny.jpg`,
+          cardimg: `viptour.jpeg`,
           content: "",
           location: "Kuala Lumpur",
           class: "border-style: solid; border-radius: 5px; border-color: #262626;"
