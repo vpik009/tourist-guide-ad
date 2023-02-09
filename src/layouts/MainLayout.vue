@@ -4,7 +4,7 @@
       <q-toolbar>
           <q-toolbar-title class="text-center">
             <q-avatar>
-              <img src="../assets/logo.png">
+              <img src="logo.png">
             </q-avatar>
             САТУ́-ТУР
           </q-toolbar-title>
