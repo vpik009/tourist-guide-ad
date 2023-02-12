@@ -132,7 +132,7 @@
             </q-img>
 
             <q-card-actions>
-              <q-btn flat @click="saveExcursionDetails(item), excursion_details=true">Подробнее</q-btn>
+              <q-btn flat @click="saveExcursionDetails(item), excursion_details=true, testdb()">Подробнее</q-btn>
             </q-card-actions>
           </q-card>
 
@@ -390,6 +390,8 @@
 <script>
 import { defineComponent, ref } from 'vue'
 import { Screen } from 'quasar'
+import { db } from "../../db/firebase-config"
+import { doc, setDoc } from "firebase/firestore"; 
 
 export default{
   name: 'IndexPage',
@@ -478,6 +480,16 @@ export default{
     
   },
   methods:{
+
+    async testdb(){
+      console.log("hi")
+      await setDoc(doc(db, "cities", "LA"), {
+        name: "Los Angeles",
+        state: "CAAA",
+        country: "USA"
+      });
+    },
+
     whatsapp(){
       window.location = "https://api.whatsapp.com/send?phone=+79150694774&text=Здравствуйте. Меня интересуют экскурсии компании Сату-Тур!";
     },
