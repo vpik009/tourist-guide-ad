@@ -4,6 +4,7 @@
     
     <div class="q-pa-md">
       <Transition>
+        
       <q-carousel
         style="border-radius: 10px;"
         animated
@@ -28,6 +29,7 @@
         <q-carousel-slide :name="6" img-src="../../public/chinwee.jpeg" />
         <q-carousel-slide :name="7" img-src="../../public/svetlyachki.jpg" />
       </q-carousel>
+      
       </Transition>
     </div>
     
@@ -273,10 +275,10 @@
                     color="orange"
                     disable
             />
-            <q-input outlined disable v-model="reviewName" class="col-6" label="Имя (Отзывы временно отключены...)" />
-            <q-input outlined disable v-model="reviewText" label="Комментарий (Отзывы временно отключены...)" />
+            <q-input outlined v-model="reviewName" class="col-6" label="Имя (Отзывы временно отключены...)" />
+            <q-input outlined v-model="reviewText" label="Комментарий (Отзывы временно отключены...)" />
             <div align="center">
-              <q-btn disable color="primary" class="q-ma-md" label="Оставить отзыв" />
+              <q-btn color="primary" class="q-ma-md" label="Оставить отзыв" @click="writeReview" />
             </div>
       
 
@@ -334,10 +336,10 @@
                     color="orange"
                     disable
             />
-            <q-input outlined disable v-model="reviewName" class="col-6" label="Имя (Отзывы временно отключены...)" />
-            <q-input outlined disable v-model="reviewText" label="Комментарий (Отзывы временно отключены...)" />
+            <q-input outlined v-model="reviewName" class="col-6" label="Имя (Отзывы временно отключены...)" />
+            <q-input outlined v-model="reviewText" label="Комментарий (Отзывы временно отключены...)" />
             <div align="center">
-              <q-btn disable color="primary" class="q-ma-md" label="Оставить отзыв" />
+              <q-btn color="primary" class="q-ma-md" label="Оставить отзыв" @click="writeReview" />
             </div>
 
           </div>
@@ -389,9 +391,9 @@
 
 <script>
 import { defineComponent, ref } from 'vue'
-import { Screen } from 'quasar'
+import { Screen, date} from 'quasar'
 import { db } from "../../db/firebase-config"
-import { doc, setDoc } from "firebase/firestore"; 
+import { doc, setDoc, getDoc } from "firebase/firestore"; 
 
 export default{
   name: 'IndexPage',
@@ -483,6 +485,43 @@ export default{
 
     async testdb(){
       console.log("hi")
+      await setDoc(doc(db, "cities", "LA"), {
+        name: "Los Angeles",
+        state: "CAAA",
+        country: "USA"
+      });
+    },
+
+
+    async writeReview(){
+
+      console.log("write review")
+      try{
+        await setDoc(doc(db, "reviews", `${this.reviewName}`), {
+          review: this.reviewText,
+          rating: this.reviewScore,
+          timestamp: date.formatDate(Date.now(), 'YYYY-MM-DDTHH:mm:ss.SSSZ')
+        })
+
+        this.reviewName = ""
+        this.reviewText = ""
+
+        //send a success notification
+        this.$q.notify({
+            message: 'Отзыв был успешно размещен',
+            color: 'green'
+          })
+
+      }catch(e){
+        this.$q.notify({
+          message: 'Что-то пошло не так при публикации вашего отзыва',
+          color: 'red'
+        })
+      }
+    },
+
+    async loadReviews(){
+      console.log("load reviews")
       await setDoc(doc(db, "cities", "LA"), {
         name: "Los Angeles",
         state: "CAAA",
