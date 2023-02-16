@@ -51,7 +51,7 @@
       >
         <q-tab name="1" icon="home" label="Главная" />
         <q-tab name="2" icon="airport_shuttle" label="Экскурсии" />
-        <q-tab name="3" icon="rate_review" label="Отзывы" />
+        <q-tab name="3" icon="rate_review" label="Отзывы" @click="loadReviews"/>
       </q-tabs>
 
     </div>
@@ -134,7 +134,7 @@
             </q-img>
 
             <q-card-actions>
-              <q-btn flat @click="saveExcursionDetails(item), excursion_details=true, testdb()">Подробнее</q-btn>
+              <q-btn flat @click="saveExcursionDetails(item), excursion_details=true">Подробнее</q-btn>
             </q-card-actions>
           </q-card>
 
@@ -273,19 +273,28 @@
                     v-model="reviewScore"
                     size="2em"
                     color="orange"
-                    disable
             />
             <q-input outlined v-model="reviewName" class="col-6" label="Имя (Отзывы временно отключены...)" />
             <q-input outlined v-model="reviewText" label="Комментарий (Отзывы временно отключены...)" />
             <div align="center">
               <q-btn color="primary" class="q-ma-md" label="Оставить отзыв" @click="writeReview" />
             </div>
-      
-
           </div>
 
           <div class="col-8 justify-center q-ma-md q-mb-none">
             <text class="text-h4 row col-12 q-ma-md q-mt-xl"> Отзывы </text>
+          </div>
+
+
+
+          <div class="text-center self-center justify-center">
+            <q-spinner-orbit
+                class="q-ma-lg"
+                color="primary"
+                size="5em"
+                v-if="loadingReviews"
+              />
+            <q-tooltip :offset="[0, 8]">Загрузка отзывов</q-tooltip>
           </div>
 
           <q-card class="my-card col-8" v-for="(rating, index) in ratings" :key=index>
@@ -334,7 +343,6 @@
                     v-model="reviewScore"
                     size="2em"
                     color="orange"
-                    disable
             />
             <q-input outlined v-model="reviewName" class="col-6" label="Имя (Отзывы временно отключены...)" />
             <q-input outlined v-model="reviewText" label="Комментарий (Отзывы временно отключены...)" />
@@ -346,6 +354,17 @@
 
           <div class="col-8 justify-center q-ma-md q-mb-none">
             <text class="text-h4 row col-12 q-ma-md q-mt-xl"> Отзывы </text>
+          </div>
+
+      
+          <div class="text-center self-center justify-center">
+            <q-spinner-orbit
+                class="q-ma-lg"
+                color="primary"
+                size="5em"
+                v-if="loadingReviews"
+              />
+            <q-tooltip :offset="[0, 8]">Загрузка отзывов</q-tooltip>
           </div>
 
           <q-card class="my-card col-8" v-for="(rating, index) in ratings" :key=index>
@@ -393,7 +412,7 @@
 import { defineComponent, ref } from 'vue'
 import { Screen, date} from 'quasar'
 import { db } from "../../db/firebase-config"
-import { doc, setDoc, getDoc } from "firebase/firestore"; 
+import { doc, collection, setDoc, getDoc, getDocs} from "firebase/firestore"; 
 
 export default{
   name: 'IndexPage',
@@ -408,6 +427,7 @@ export default{
     return{
       page: 1,
       excursion_details: false,
+      loadingReviews: true,
       reviewName: "",
       reviewText: "",
       reviewScore: 0,
@@ -483,28 +503,18 @@ export default{
   },
   methods:{
 
-    async testdb(){
-      console.log("hi")
-      await setDoc(doc(db, "cities", "LA"), {
-        name: "Los Angeles",
-        state: "CAAA",
-        country: "USA"
-      });
-    },
-
-
     async writeReview(){
-
-      console.log("write review")
       try{
         await setDoc(doc(db, "reviews", `${this.reviewName}`), {
-          review: this.reviewText,
-          rating: this.reviewScore,
+          comment: this.reviewText,
+          name: this.reviewName,
+          score: this.reviewScore,
           timestamp: date.formatDate(Date.now(), 'YYYY-MM-DDTHH:mm:ss.SSSZ')
         })
 
         this.reviewName = ""
         this.reviewText = ""
+        this.reviewScore = 0
 
         //send a success notification
         this.$q.notify({
@@ -521,12 +531,18 @@ export default{
     },
 
     async loadReviews(){
-      console.log("load reviews")
-      await setDoc(doc(db, "cities", "LA"), {
-        name: "Los Angeles",
-        state: "CAAA",
-        country: "USA"
-      });
+      this.loadingReviews = true;
+
+      const docRef = collection(db, "reviews");
+      const docSnap = await getDocs(docRef);
+
+      this.ratings = [];  //clear ratings
+
+      docSnap.forEach(doc => {
+          this.ratings.push(doc.data());
+      })
+
+      // this.loadingReviews = false;
     },
 
     whatsapp(){
