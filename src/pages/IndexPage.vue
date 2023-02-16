@@ -287,7 +287,7 @@
 
 
 
-          <div class="text-center self-center justify-center">
+          <div class="text-center col-12">
             <q-spinner-orbit
                 class="q-ma-lg"
                 color="primary"
@@ -344,8 +344,8 @@
                     size="2em"
                     color="orange"
             />
-            <q-input outlined v-model="reviewName" class="col-6" label="Имя (Отзывы временно отключены...)" />
-            <q-input outlined v-model="reviewText" label="Комментарий (Отзывы временно отключены...)" />
+            <q-input dense outlined v-model="reviewName" class="col-6" label="Имя (Отзывы временно отключены...)" />
+            <q-input dense outlined v-model="reviewText" label="Комментарий (Отзывы временно отключены...)" />
             <div align="center">
               <q-btn color="primary" class="q-ma-md" label="Оставить отзыв" @click="writeReview" />
             </div>
@@ -357,7 +357,7 @@
           </div>
 
       
-          <div class="text-center self-center justify-center">
+          <div class="text-center col-12">
             <q-spinner-orbit
                 class="q-ma-lg"
                 color="primary"
@@ -481,36 +481,34 @@ export default{
           class: ""
         }, 
       ],
-      ratings: [
-        {
-          name: "Наталья Степаненко",
-          score: "5",
-          comment: "Хочу сказать СПАСИБО за классный тур. Все было на высоте. Очень красиво, много фоток крутых) Организовано гладко. Гид интересный, интеллигентный, много мест посоветовал суперских. Муж и дети тоже довольны!"
-        },
-        {
-          name: "Марк Эргашев",
-          score: "5",
-          comment: "Спасибо команде Сату-Тур. Приятно что всегда были на связи. Что вообще была возможность по телефону детально пообщаться и под нас подстроиться. Мы всего на 2 дня оставались и обратно в Тайланд. До новых встреч. Марк и Вера)"
-        },
-        {
-          name: "Викентий Кузнецов",
-          score: "4.5",
-          comment: "Только вернулись с тура. Хочу сразу отписаться. Пещеры Бату очень понравились. Индуизм всегда манил. Ступеньки кстати не такие и страшные в прохождении, хоть их и 272. Главное - подходящая обувь, кроссовки. "
-        }
-      ]
+      ratings: [/** field for storing reviews */]
     }
     
   },
   methods:{
 
     async writeReview(){
+
+      //none of the fields can be empty
+      if(!this.reviewName || !this.reviewText || !this.reviewScore){
+
+        this.$q.notify({
+          message: 'Ни одно из вышеперечисленных полей не может быть оставлено пустым',
+          color: 'red-9'
+        })
+
+        return
+      }
+      
       try{
-        await setDoc(doc(db, "reviews", `${this.reviewName}`), {
+        let review = {
           comment: this.reviewText,
           name: this.reviewName,
           score: this.reviewScore,
           timestamp: date.formatDate(Date.now(), 'YYYY-MM-DDTHH:mm:ss.SSSZ')
-        })
+        };
+
+        await setDoc(doc(db, "reviews", `${this.reviewName}`), review)
 
         this.reviewName = ""
         this.reviewText = ""
@@ -519,13 +517,15 @@ export default{
         //send a success notification
         this.$q.notify({
             message: 'Отзыв был успешно размещен',
-            color: 'green'
+            color: 'green-8'
           })
+
+        this.loadReviews(); // reload the reviews
 
       }catch(e){
         this.$q.notify({
           message: 'Что-то пошло не так при публикации вашего отзыва',
-          color: 'red'
+          color: 'red-9'
         })
       }
     },
@@ -542,7 +542,7 @@ export default{
           this.ratings.push(doc.data());
       })
 
-      // this.loadingReviews = false;
+      this.loadingReviews = false;
     },
 
     whatsapp(){
