@@ -506,7 +506,7 @@ export default{
           timestamp: date.formatDate(Date.now(), 'YYYY-MM-DDTHH:mm:ss.SSSZ')
         };
 
-        await setDoc(doc(db, "reviews", `${this.reviewName}`), review)
+        await setDoc(doc(db, "reviews", `${review.timestamp}`), review)
 
         this.reviewName = ""
         this.reviewText = ""
@@ -539,6 +539,7 @@ export default{
       docSnap.forEach(doc => {
           this.ratings.push(doc.data());
       })
+      this.ratings.reverse();
 
       this.loadingReviews = false;
     },
