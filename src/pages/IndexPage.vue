@@ -104,8 +104,7 @@
             <text class="row justify-center text-subtitle2 q-ma-md q-mt-lg">Туристическое Агенство Сату-Тур</text>
 
             <text class="row justify-center text-subtitle2 q-ma-md">Русско-говорящие гиды с широким опытом проведут Ваш персональный VIP тур.</text>
-
-            <text class="row justify-center text-subtitle2 q-ma-md">Для Ваших детей тур Бесплатен. (До 10 лет)</text>
+            
           </div>
 
         </div>
