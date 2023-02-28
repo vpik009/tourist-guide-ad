@@ -1,5 +1,5 @@
 # HOSTED
-https://storied-otter-25859d.netlify.app/#/
+https://satu-tour.com/
 
 
 # Setup
