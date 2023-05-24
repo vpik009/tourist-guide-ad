@@ -154,7 +154,7 @@ module.exports = configure(function (ctx) {
       manifest: {
         name: `tour guide site`,
         short_name: `tour guide site`,
-        description: `tour guides in Malaysia site`,
+        description: `Сайт русскоговорящих гидов в Малайзии`,
         display: 'standalone',
         orientation: 'portrait',
         background_color: '#ffffff',
