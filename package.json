@@ -1,9 +1,9 @@
 {
   "name": "tourist-guide-ad",
   "version": "0.0.1",
-  "description": "tour guides in Malaysia site",
+  "description": "Сайт русскоговорящих гидов в Малайзии",
   "productName": "САТУ-ТУР",
-  "author": "Vladislav <vpik0001@mailfence.com>",
+  "author": ".",
   "private": true,
   "scripts": {
     "lint": "eslint --ext .js,.vue ./",
