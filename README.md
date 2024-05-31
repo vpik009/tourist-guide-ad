@@ -1,4 +1,4 @@
-# HOSTED
+# HOSTED ( the site is no longer hosted)
 https://satu-tour.com/
 
 
